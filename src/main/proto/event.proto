@@ -1,0 +1,26 @@
+syntax = "proto3";
+package event;
+option java_package = "com.kafka.demo.amoeba";
+option java_outer_classname = "InputEvent";
+
+message JioFabricInitialization {
+  repeated Event event = 1;
+}
+message Event {
+  string event_id = 1;
+  string event_topic = 2;
+  oneof queue_event_is_one_of {
+    RawText raw_text = 3;
+    string normal_text = 4;
+  }
+}
+
+message RawText{
+  string text = 1;
+  Language language = 2;
+
+  enum Language {
+    HINDI = 0;
+    ENGLISH = 1;
+  }
+}
